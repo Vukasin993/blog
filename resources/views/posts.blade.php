@@ -7,7 +7,19 @@
     <title>Posts</title>
 
 </head>
+<style>
+div {
+    text-align: center;
+}
+
+a { text-decoration: none; 
+color: green;
+}
+h1   {color: blue;}
+p    {color: red;}
+</style>
 <body>
+    <div>
     <h1>Posts</h1>
     
     @foreach ($posts as $post)
@@ -15,5 +27,6 @@
         <a href="{{route('singlePost', ['id' => $post->id])}}">{{$post->title}}</a>
     </div>
     @endforeach
+    </div>
 </body>
 </html>

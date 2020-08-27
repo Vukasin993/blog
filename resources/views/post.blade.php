@@ -7,8 +7,19 @@
     <title>Posts</title>
 
 </head>
+<style>
+div {
+    text-align: center;
+}
+a { text-decoration: none; 
+color: green;}
+h1   {color: blue;}
+p    {color: red;}
+</style>
 <body>
-    <h1>{{$title}}</h1>
-    <p>{{$body}}</p>
+    <div>
+        <h1>{{$title}}</h1>
+        <p>{{$body}}</p>
+    </div>
 </body>
 </html>
