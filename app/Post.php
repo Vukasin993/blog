@@ -15,4 +15,8 @@ class Post extends Model
     public static function unpublished() {
         return self::where('is_published', 0);
     }
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
 }

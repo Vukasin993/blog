@@ -12,5 +12,14 @@
         <h1>{{$title}}</h1>
         <p>{{$body}}</p>
     </div>
+
+    
+    @foreach($comments as $comment)
+    <div>
+     {{$comment}}
+        </div>
+    @endforeach
+
+    
 </body>
 </html>

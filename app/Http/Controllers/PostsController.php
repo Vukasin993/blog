@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatePostRequest;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Comment;
 
 class PostsController extends Controller
 {
@@ -24,12 +25,15 @@ class PostsController extends Controller
     public function onePost($id)
     {
         $post = Post::find($id);
+        $comments = $post->comments;
         if (!$post) {
             return view('post_not_found');
         }
-        $title = $post->title;
-        $body = $post->body;
-        return view('posts.single', compact('title', 'body'));
+
+        return view('posts.single', ['title' =>$post->title, 
+        'body' =>$post->body, 'comments' => $comments]);
+
+       
     }
 
     /**
