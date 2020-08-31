@@ -3,6 +3,7 @@
 @section('title', 'Posts')
 
 @section('content')
+    <a href="{{route('createPostForm')}}" class="btn btn-primary">Create a post</a>
     <h1>Posts</h1>
     
     @foreach ($posts as $post)

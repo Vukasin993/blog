@@ -38,7 +38,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -49,7 +49,21 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+         $data = $request->validate([
+            'title' => 'required|string|unique:posts|max:50',
+            'body' => 'required|string',
+            'is_published' => 'sometimes|integer',
+        ]);
+       // $newPost = new Post;
+        //$newPost->title = $data['title'];
+        //$newPost->body = $data['body'];
+        //$newPost->is_published = $request->get('is_published', false);
+        
+        //$newPost->save();
+        $newPost = Post::create($data);
+
+        return redirect('/posts');
     }
 
     /**

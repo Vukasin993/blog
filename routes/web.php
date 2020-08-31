@@ -14,7 +14,14 @@ use App\Post;
 */
 Route::get('/posts', 'PostsController@index');
 
+Route::get('/posts/create', 'PostsController@create')->name('createPostForm');
+
+Route::post('/posts', 'PostsController@store');
+
 Route::get('/posts/{id}', 'PostsController@onePost')->name('singlePost');
+
+
+
 
 
 
