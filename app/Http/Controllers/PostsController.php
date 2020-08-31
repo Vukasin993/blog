@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePostRequest;
 use Illuminate\Http\Request;
 use App\Post;
 
@@ -47,14 +48,11 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(CreatePostRequest $request)
+    {   
 
-         $data = $request->validate([
-            'title' => 'required|string|unique:posts|max:50',
-            'body' => 'required|string',
-            'is_published' => 'sometimes|integer',
-        ]);
+
+         $data = $request->validate();
        // $newPost = new Post;
         //$newPost->title = $data['title'];
         //$newPost->body = $data['body'];
