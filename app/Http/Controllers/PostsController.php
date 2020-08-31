@@ -16,7 +16,7 @@ class PostsController extends Controller
     {
         
             $posts =Post::where('is_published', 1)->get();
-            return view('posts', compact('posts'));
+            return view('posts.all', compact('posts'));
      
     }
 
@@ -28,7 +28,7 @@ class PostsController extends Controller
         }
         $title = $post->title;
         $body = $post->body;
-        return view('post', compact('title', 'body'));
+        return view('posts.single', compact('title', 'body'));
     }
 
     /**
