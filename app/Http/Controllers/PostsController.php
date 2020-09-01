@@ -16,9 +16,12 @@ class PostsController extends Controller
      */
     public function index()
     {
-        
-            $posts =Post::where('is_published', 1)->get();
-            return view('posts.all', compact('posts'));
+            $publishedPosts = Post::published()->with('comments')->orderBy('title', 'asc')->get();
+            return view('posts.all', ['posts' =>$publishedPosts]);
+            // drugi nacin
+           // $posts =Post::where('is_published', 1)->get();
+           // return view('posts.all', compact('posts'));
+          
      
     }
 

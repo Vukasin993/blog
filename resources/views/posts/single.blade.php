@@ -11,12 +11,13 @@
     <div>
         <h1>{{$title}}</h1>
         <p>{{$body}}</p>
+        <hr />
     </div>
 
     
     @foreach($comments as $comment)
     <div>
-     {{$comment}}
+     {{$comment->body}}
         </div>
     @endforeach
 
