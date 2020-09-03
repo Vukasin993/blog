@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreatePostRequest;
-use Illuminate\Http\Request;
-use App\Post;
+
+use App\Http\Requests;
 use App\Comment;
 
-class PostsController extends Controller
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,30 +15,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-            $publishedPosts = Post::published()->with('comments')->orderBy('title', 'asc')->get();
-            return view('posts.all', ['posts' =>$publishedPosts]);
-            // drugi nacin
-           // $posts =Post::where('is_published', 1)->get();
-           // return view('posts.all', compact('posts'));
-          
-     
-    }
-
-    public function onePost($id)
-    {
-        $post = Post::find($id);
-        $comments = $post->comments;
-        if (!$post) {
-            return view('post_not_found');
-        }
-
-        return view('posts.single', [
-            'id' => $post->id,
-            'title' =>$post->title, 
-            'body' =>$post->body, 
-            'comments' => $comments]);
-
-       
+        //
     }
 
     /**
@@ -49,7 +25,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        //
     }
 
     /**
@@ -58,23 +34,21 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreatePostRequest $request)
-    {   
-
-
-         $data = $request->validated();
-;
-        $newPost = Post::create($data);
-
-        // drugi nacin:
-        //$newPost = new Post;
-        //$newPost->title = $data['title'];
-        //$newPost->body = $data['body'];
-        //$newPost->is_published = $request->get('is_published', false);
+    public function store(CreateCommentRequest $request, $id)
+    {
         
-        //$newPost->save()
+        //validate form data
+        $data = $request->validate([
+            'comment' => 'required| string| max:300'
+        ]);
 
-        return redirect('/posts');
+        //create comment
+        Comment::create([
+            'body' =>$data['comment'],
+            'post_id' => $id
+        ]);
+        //redirect
+         return redirect('/posts/'.$id);
     }
 
     /**
@@ -83,7 +57,10 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
+    public function show($id)
+    {
+        //
+    }
 
     /**
      * Show the form for editing the specified resource.

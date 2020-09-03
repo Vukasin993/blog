@@ -7,7 +7,7 @@
     <h1>Posts</h1>
     
     @foreach ($posts as $post)
-    <div>
+    <div class="alert alert-primary">
         <a href="{{route('singlePost', ['id' => $post->id])}}">{{$post->title}} : ( {{$post->comments->count()}} )</a>
     </div>
     @endforeach

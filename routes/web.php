@@ -18,7 +18,14 @@ Route::get('/posts/create', 'PostsController@create')->name('createPostForm');
 
 Route::post('/posts', 'PostsController@store');
 
+Route::post('/posts/{id}/comments', 'CommentsController@store');
+
 Route::get('/posts/{id}', 'PostsController@onePost')->name('singlePost');
+
+Route::get('/register', 'AuthController@getRegisterForm');
+Route::post('/users', 'AuthController@register');
+
+
 
 
 
