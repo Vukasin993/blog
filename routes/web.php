@@ -20,13 +20,16 @@ Route::post('/posts', 'PostsController@store');
 
 Route::post('/posts/{id}/comments', 'CommentsController@store');
 
-Route::get('/posts/{id}', 'PostsController@onePost')->name('singlePost');
+Route::get('/posts/{id}', 'PostsController@onePost')->name('singlePost')->middleware('auth');
 
-Route::get('/register', 'AuthController@getRegisterForm');
-Route::post('/users', 'AuthController@register');
+Route::group(['middleware'=>['guest']], function() {
+    Route::get('/register', 'AuthController@getRegisterForm');
+    Route::post('/users', 'AuthController@register');
+    Route::get('/login', 'AuthController@getLoginForm')->name('login');
+    Route::post('/login', 'AuthController@login');
+});
 
-Route::get('/login', 'AuthController@getLoginForm');
-Route::post('/login', 'AuthController@login');
+
 
 
 
