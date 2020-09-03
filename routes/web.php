@@ -18,9 +18,11 @@ Route::get('/posts/create', 'PostsController@create')->name('createPostForm');
 
 Route::post('/posts', 'PostsController@store');
 
-Route::post('/posts/{id}/comments', 'CommentsController@store');
+Route::post('/posts/{id}/comments', 'CommentsController@store')->middleware('auth');
 
-Route::get('/posts/{id}', 'PostsController@onePost')->name('singlePost')->middleware('auth');
+Route::get('/posts/{id}', 'PostsController@onePost')->name('singlePost');
+
+Route::get('/logout', 'AuthController@logout')->middleware('auth');
 
 Route::group(['middleware'=>['guest']], function() {
     Route::get('/register', 'AuthController@getRegisterForm');
